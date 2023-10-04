@@ -10,8 +10,8 @@ from flask_ckeditor import CKEditor, CKEditorField
 from datetime import date
 
 
-Email="hehehahaho24@gmail.com"
-Password="nfbtwygmmjycdtrg"
+Email="Email"
+Password="Password"
 
 
 app = Flask(__name__,template_folder="frontend")
