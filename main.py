@@ -1,7 +1,7 @@
 import smtplib
 from flask import Flask, render_template, request
 from flask import Flask, render_template, redirect, url_for
-from flask_bootstrap import Bootstrap
+from flask_bootstrap import Bootstrap5
 from flask_sqlalchemy import SQLAlchemy
 from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField
@@ -17,11 +17,10 @@ Password="nfbtwygmmjycdtrg"
 app = Flask(__name__,template_folder="frontend")
 app.config['SECRET_KEY'] = '8BYkEfBA6O6donzWlSihBXox7C0sKR6b'
 ckeditor = CKEditor(app)
-Bootstrap(app)
+Bootstrap5(app)
 
 ##CONNECT TO DB
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///posts.db'
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
 ##CONFIGURE TABLE
@@ -53,7 +52,7 @@ def get_all_posts():
     return render_template("index.html", all_posts=posts)
 
 
-##RENDER POST USING DB
+#Go for more details
 @app.route("/post/<int:post_id>")
 def show_post(post_id):
     requested_post = BlogPost.query.get(post_id)
@@ -68,6 +67,7 @@ def about():
 @app.route("/contact")
 def contact():
     return render_template("contact.html")
+
 
 @app.route("/new-post", methods=["GET", "POST"])
 def add_new_post():
@@ -96,6 +96,14 @@ def edit_post(post_id):
         author=post.author,
         body=post.body
     )
+    if edit_form.validate_on_submit():
+        post.title = edit_form.title.data
+        post.subtitle = edit_form.subtitle.data
+        post.img_url = edit_form.img_url.data
+        post.author = edit_form.author.data
+        post.body = edit_form.body.data    
+        db.session.commit()
+        return redirect(url_for("show_post", post_id=post.id))
     return render_template("make-post.html", form=edit_form, is_edit=True)
 
 
@@ -117,10 +125,10 @@ def receive_data():
     email=request.form["email"]
     send_mail(name,msg,email)
 
-    return render_template("index.html")
+    return redirect(url_for("get_all_posts"))
 
 def send_mail(name,mess,email):
-    msg=f"Subject:New Message\n\n Name:{name}\n Email:{email}\n Msg:{mess}"
+    msg=f"Subject:New Message\n\n Name:{name}\n Email:{email}\n Message:{mess}"
     with smtplib.SMTP("smtp.gmail.com",port=587) as connection:
         connection.starttls()
         connection.login(user=Email,password=Password)

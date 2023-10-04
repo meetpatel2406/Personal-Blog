@@ -28,9 +28,11 @@
           </p>
            <hr>
            <div class="clearfix">
-            <button class="bg-primary">
-           <a href="{{url_for('get_all_posts')}}">Go Back</a>
-            </button>
+            <a class="btn btn-primary float-left" href="{{url_for('get_all_posts')}}">Go Back</a>
+            
+            <a
+            class="btn btn-primary float-right" href="{{url_for('edit_post', post_id=post.id)}}">Edit Post</a
+            >
         </div>
           </div>
       </div>
