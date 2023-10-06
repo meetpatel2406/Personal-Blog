@@ -19,16 +19,22 @@
   <div class="container">
     <div class="row">
       <div class="col-lg-8 col-md-10 mx-auto">
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe nostrum ullam eveniet pariatur voluptates odit, fuga atque ea nobis sit soluta odio, adipisci quas excepturi maxime quae totam ducimus consectetur?</p>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius praesentium recusandae illo eaque architecto error, repellendus iusto reprehenderit, doloribus, minus sunt. Numquam at quae voluptatum in officia voluptas voluptatibus, minus!</p>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut consequuntur magnam, excepturi aliquid ex itaque esse est vero natus quae optio aperiam soluta voluptatibus corporis atque iste neque sit tempora!</p>
+        <p>
+          Greetings! I'm Meet Patel, and I'm currently in my second year of studying computer science engineering. I'm excited to invite you to explore my blog, a platform where I embark on a journey to unravel the mysteries of the world while sharing captivating and thought-provoking facts.
+        </p>
+        <p>
+          Discovering the World: One of the primary objectives of my blog is to take you on a virtual tour of our fascinating world. From awe-inspiring natural wonders to the latest technological innovations, I strive to present an array of topics that will leave you informed and inspired.
+        </p>
+        <p>
+          Interesting Facts: In addition to exploring the world, I love digging up intriguing facts and stories that often go unnoticed. You can expect to find a collection of these little-known nuggets of knowledge that are sure to spark your curiosity.
+        </p>
       </div>
     </div>
     <div>
-      <button class="bg-primary"><a href="{{ url_for('get_all_posts') }}">Go Back</a></button>
+      <a class="btn btn-primary float-left" href="{{url_for('get_all_posts')}}">Go Back</a>
     </div>
   </div>
 
   <hr>
 
-  {% include "footer.html" %}
+{% include "footer.html" %}
